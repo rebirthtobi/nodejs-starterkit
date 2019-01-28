@@ -4,7 +4,10 @@
   "description": "A JavaScript Starter kit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\"",
+    "start": "node build/main.js",
+    "dev": "npm-run-all --serial test build start",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,20 @@
   "bugs": {
     "url": "https://github.com/rebirthtobi/js-starterkit/issues"
   },
-  "homepage": "https://github.com/rebirthtobi/js-starterkit#readme"
+  "homepage": "https://github.com/rebirthtobi/js-starterkit#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-node-externals": "^1.7.2"
+  }
 }
