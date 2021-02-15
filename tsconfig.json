@@ -1,15 +1,25 @@
 {
-  "compilerOptions": {
-    "experimentalDecorators": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "lib": ["es7"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
-    "target": "esnext"
-  },
-  "include": ["src/**/*.ts"]
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "moduleResolution": "node",
+        "strict": true,
+        "target": "es6",
+        "module": "commonjs",
+        "lib": ["es2018", "esnext.asynciterable", "dom"],
+        "emitDecoratorMetadata": true,
+        "outDir": "./build",
+        "rootDir": "./src",
+        "typeRoots": ["node_modules/@types", "./src/types"],
+        "strictPropertyInitialization": false,
+        "baseUrl": ".",
+        "sourceMap": true,
+        "inlineSources": true,
+        "sourceRoot": "./src/"
+    },
+    "include": ["./src/*"],
+    "exclude": ["node_modules/*"]
 }

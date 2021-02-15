@@ -1,95 +1,93 @@
 {
-  "name": "nodejs-starterkit",
-  "version": "1.0.0",
-  "description": "A JavaScript Starter kit",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/index",
-    "start:dev": "nodemon --exec babel-node -r dotenv/config src/index --extensions '.ts'",
-    "migrate": "sequelize-cli db:migrate",
-    "migrate:undo": "sequelize-cli db:migrate:undo",
-    "migrate:generate": "sequelize-cli migration:generate --name",
-    "seed": "sequelize-cli db:seed:all",
-    "seed:generate": "sequelize-cli seed:generate",
-    "seed:undo:all": "sequelize-cli db:seed:undo:all",
-    "seed:undo": "sequelize-cli db:seed:undo",
-    "lint": "concurrently --kill-others-on-fail 'yarn run lint:ts' 'yarn run lint:js'",
-    "lint:ts": "tslint -c tslint.json --project tsconfig.json",
-    "lint:js": "eslint . --ext .js,.ts",
-    "fix": "yarn run fix:ts && yarn run fix:js",
-    "fix:ts": "tslint -c tslint.json --project tsconfig.json --fix",
-    "fix:js": "eslint . --ext .js,.ts --fix",
-    "test": "mocha --require @babel/register \"./src/**/*.test.js*\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rebirthtobi/nodejs-starterkit.git"
-  },
-  "keywords": [
-    "nodejs starter kit",
-    "starter kit",
-    "node",
-    "typescript starter kit",
-    "typescript node starter kit"
-  ],
-  "author": "ttobi4@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rebirthtobi/nodejs-starterkit/issues"
-  },
-  "homepage": "https://github.com/rebirthtobi/nodejs-starterkit#readme",
-  "dependencies": {
-    "@babel/register": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "@hapi/joi": "^16.1.7",
-    "bcrypt": "^5.0.0",
-    "compression": "^1.7.4",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "helmet": "^3.16.0",
-    "jsonwebtoken": "^8.5.1",
-    "nodemon": "^1.19.3",
-    "pg": "^7.12.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^5.7.6",
-    "sequelize-cli": "^5.5.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/node": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/plugin-transform-typescript": "^7.6.0",
-    "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-typescript": "^7.6.0",
-    "@types/bcrypt": "^3.0.0",
-    "@types/bluebird": "^3.5.27",
-    "@types/compression": "^1.0.1",
-    "@types/cors": "^2.8.6",
-    "@types/express": "^4.17.1",
-    "@types/hapi__joi": "^15.0.4",
-    "@types/helmet": "^0.0.44",
-    "@types/jsonwebtoken": "^8.3.4",
-    "@types/node": "^12.7.8",
-    "@types/randomstring": "^1.1.6",
-    "@types/validator": "^10.11.3",
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "chai": "^4.2.0",
-    "concurrently": "^5.0.0",
-    "cross-env": "^6.0.3",
-    "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "mocha": "^5.2.0",
-    "supertest": "^4.0.2",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
-  },
-  "eslintIgnore": [
-    "migrations"
-  ]
+    "name": "nodejs-starterkit",
+    "version": "1.0.0",
+    "description": "A JavaScript Starter kit",
+    "main": "index.js",
+    "scripts": {
+        "start": "node -r dotenv/config ./build/index.js",
+        "dev": "cross-env NODE_ENV=development nodemon -e js,ts --exec ts-node -r dotenv/config -r tsconfig-paths/register  src/index.ts",
+        "migrate": "cross-env NODE_ENV=development sequelize-cli db:migrate",
+        "migrate:undo": "cross-env NODE_ENV=development sequelize-cli db:migrate:undo",
+        "migrate:generate": "cross-env NODE_ENV=development sequelize-cli migration:generate --name",
+        "seed": "cross-env NODE_ENV=development sequelize-cli db:seed:all",
+        "seed:generate": "cross-env NODE_ENV=development sequelize-cli seed:generate",
+        "seed:undo:all": "cross-env NODE_ENV=development sequelize-cli db:seed:undo:all",
+        "seed:undo": "cross-env NODE_ENV=development sequelize-cli db:seed:undo",
+        "lint": "concurrently --kill-others-on-fail 'yarn run lint:ts' 'yarn run lint:js'",
+        "lint:ts": "tslint -c tslint.json --project tsconfig.json",
+        "lint:js": "eslint . --ext .js,.ts",
+        "fix": "yarn run fix:ts && yarn run fix:js",
+        "fix:ts": "tslint -c tslint.json --project tsconfig.json --fix",
+        "fix:js": "eslint . --ext .js,.ts --fix",
+        "test": "mocha --require @babel/register \"./src/**/*.test.js*\"",
+        "clean": "rm -rf build && mkdir build",
+        "build": "yarn run clean && tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rebirthtobi/nodejs-starterkit.git"
+    },
+    "keywords": [
+        "nodejs starter kit",
+        "starter kit",
+        "node",
+        "typescript starter kit",
+        "typescript node starter kit"
+    ],
+    "author": "ttobi4@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rebirthtobi/nodejs-starterkit/issues"
+    },
+    "homepage": "https://github.com/rebirthtobi/nodejs-starterkit#readme",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "cors": "^2.8.5",
+        "express": "^4.16.4",
+        "helmet": "^3.16.0",
+        "nodemon": "^1.19.3",
+        "sequelize": "^5.7.6",
+        "sequelize-cli": "^5.5.1"
+    },
+    "devDependencies": {
+        "@types/bluebird": "^3.5.27",
+        "@types/compression": "^1.0.1",
+        "@types/cors": "^2.8.6",
+        "@types/express": "^4.17.1",
+        "@types/helmet": "^0.0.44",
+        "@types/node": "^12.7.8",
+        "@types/validator": "^10.11.3",
+        "@typescript-eslint/eslint-plugin": "^2.23.0",
+        "@typescript-eslint/parser": "^2.23.0",
+        "chai": "^4.2.0",
+        "concurrently": "^5.0.0",
+        "cross-env": "^6.0.3",
+        "dotenv": "^8.2.0",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-import-resolver-alias": "^1.1.2",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-security": "^1.4.0",
+        "mocha": "^5.2.0",
+        "jest": "^26.0.1",
+        "supertest": "^4.0.2",
+        "ts-jest": "^26.1.0",
+        "tslint": "^5.20.0",
+        "tslint-config-security": "^1.16.0",
+        "typescript": "^3.6.3"
+    },
+    "eslintIgnore": [
+        "migrations",
+        "build"
+    ],
+    "release": {
+        "analyzeCommits": "analyse-commit-message"
+    },
+    "config": {
+        "pre-git": {
+            "pre-commit": [
+                "yarn run ban"
+            ]
+        }
+    }
 }
